@@ -1,123 +1,140 @@
 import { Shield, TrendingDown, Award, AlertTriangle, Cloud, Package, Droplet, Database, Github, User } from "lucide-react";
-import { StatCard } from "@/components/StatCard";
-import { PolicyCard } from "@/components/PolicyCard";
-import { AssetCard } from "@/components/AssetCard";
-import { AlertCard } from "@/components/AlertCard";
-import { RiskChart } from "@/components/RiskChart";
-import { Card } from "@/components/ui/card";
+import { ModernStatCard } from "@/components/ModernStatCard";
+import { ModernPolicyCard } from "@/components/ModernPolicyCard";
+import { ModernAssetCard } from "@/components/ModernAssetCard";
+import { ModernAlertCard } from "@/components/ModernAlertCard";
+import { ModernRiskChart } from "@/components/ModernRiskChart";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background p-6 lg:p-8">
-      <div className="max-w-[1600px] mx-auto space-y-6">
-        {/* Header with stats */}
-        <header className="space-y-6 animate-fade-in">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-            {/* Brand card */}
-            <Card className="p-6 shadow-glass backdrop-blur-sm border-card-border bg-card/80 flex items-center justify-center">
-              <h1 className="text-2xl font-bold text-foreground">NeoTrust</h1>
-            </Card>
+    <div className="min-h-screen bg-gradient-subtle">
+      <div className="max-w-[1800px] mx-auto p-8 lg:p-12 space-y-12">
+        {/* Header Section */}
+        <header className="space-y-8">
+          {/* Brand and User Profile Row */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-3 rounded-2xl bg-gradient-primary shadow-glow-primary">
+                <Shield className="h-7 w-7 text-white" />
+              </div>
+              <h1 className="text-4xl font-bold bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+                NeoTrust
+              </h1>
+            </div>
 
-            {/* Stat cards */}
-            <StatCard 
+            {/* User Profile */}
+            <div className="flex items-center gap-4 px-6 py-3 rounded-2xl bg-card border border-border/50 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Avatar className="h-11 w-11 border-2 border-primary/20">
+                <AvatarFallback className="bg-gradient-primary text-white font-semibold">
+                  M
+                </AvatarFallback>
+              </Avatar>
+              <div>
+                <p className="text-sm font-bold text-foreground">Mike Johnson</p>
+                <p className="text-xs text-muted-foreground">mike@neotrust.ai</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <ModernStatCard 
               label="Overall Risk" 
               value={76} 
               icon={TrendingDown}
               trend="down"
-              variant="warning"
+              variant="danger"
+              className="animate-fade-in"
             />
-            <StatCard 
+            <ModernStatCard 
               label="Security Reward" 
               value={2500} 
               icon={Award}
               trend="up"
               variant="success"
+              className="animate-fade-in"
+              style={{ animationDelay: "0.1s" } as React.CSSProperties}
             />
-            <StatCard 
+            <ModernStatCard 
               label="Pending Actions" 
               value={3} 
               icon={AlertTriangle}
-              variant="danger"
+              variant="warning"
+              className="animate-fade-in"
+              style={{ animationDelay: "0.2s" } as React.CSSProperties}
             />
-
-            {/* User profile card */}
-            <Card className="p-4 shadow-glass backdrop-blur-sm border-card-border bg-card/80 flex items-center gap-3 hover:scale-[1.02] transition-all duration-300">
-              <Avatar className="h-10 w-10 border-2 border-card-border">
-                <AvatarFallback className="bg-primary text-primary-foreground">
-                  <User className="h-5 w-5" />
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-semibold text-foreground">Mike</p>
-                <p className="text-xs text-muted-foreground truncate">mike@neotrust.ai</p>
-              </div>
-            </Card>
+            <ModernStatCard 
+              label="Active Policies" 
+              value={12} 
+              icon={Shield}
+              variant="primary"
+              className="animate-fade-in"
+              style={{ animationDelay: "0.3s" } as React.CSSProperties}
+            />
           </div>
         </header>
 
-        {/* Main content grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left sidebar - Policies */}
-          <aside className="lg:col-span-3 space-y-4 animate-slide-in">
-            <Card className="p-6 shadow-glass-lg backdrop-blur-sm border-card-border bg-card/80">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Policies Applied</h2>
-              <div className="space-y-3">
-                <PolicyCard title="MFA Required" status="enabled" />
-                <PolicyCard title="Sensitive Sharing Prevention" status="tuning" />
-                <PolicyCard title="Geo-fenced Logins" status="enabled" />
-                <PolicyCard title="Admin Approval Workflow" status="enabled" />
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+          {/* Left Sidebar - Policies */}
+          <aside className="xl:col-span-3 space-y-6 animate-slide-in-left">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-foreground px-2">Policies Applied</h2>
+              <div className="space-y-4">
+                <ModernPolicyCard title="MFA Required" status="enabled" />
+                <ModernPolicyCard title="Sensitive Sharing Prevention" status="tuning" />
+                <ModernPolicyCard title="Geo-fenced Logins" status="enabled" />
+                <ModernPolicyCard title="Admin Approval Workflow" status="active" />
               </div>
-            </Card>
+            </div>
           </aside>
 
           {/* Center - Chart */}
-          <main className="lg:col-span-6 animate-scale-in" style={{ animationDelay: "100ms" }}>
-            <RiskChart />
+          <main className="xl:col-span-6 animate-fade-in-scale" style={{ animationDelay: "0.2s" }}>
+            <ModernRiskChart />
           </main>
 
-          {/* Right sidebar - Assets */}
-          <aside className="lg:col-span-3 space-y-4 animate-slide-in" style={{ animationDelay: "200ms" }}>
-            <Card className="p-6 shadow-glass-lg backdrop-blur-sm border-card-border bg-card/80">
-              <h2 className="text-lg font-semibold text-foreground mb-4">Assets Affected</h2>
-              <div className="space-y-3">
-                <AssetCard name="Google Drive" icon={Cloud} count="54 affected" variant="warning" />
-                <AssetCard name="Box" icon={Package} count="Stable" variant="stable" />
-                <AssetCard name="Dropbox" icon={Droplet} count="7 policies" variant="stable" />
-                <AssetCard name="Snowflake" icon={Database} count="2 restricted" variant="restricted" />
-                <AssetCard name="GitHub" icon={Github} count="12 repos" variant="stable" />
+          {/* Right Sidebar - Assets */}
+          <aside className="xl:col-span-3 space-y-6 animate-slide-in-right">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold text-foreground px-2">Assets Affected</h2>
+              <div className="space-y-4">
+                <ModernAssetCard name="Google Drive" icon={Cloud} count="54 affected" status="warning" />
+                <ModernAssetCard name="Box" icon={Package} count="Stable" status="stable" />
+                <ModernAssetCard name="Dropbox" icon={Droplet} count="7 policies" status="info" />
+                <ModernAssetCard name="Snowflake" icon={Database} count="2 restricted" status="critical" />
+                <ModernAssetCard name="GitHub" icon={Github} count="12 repos" status="stable" />
               </div>
-            </Card>
+            </div>
           </aside>
         </div>
 
-        {/* Security Alerts */}
-        <section className="animate-fade-in-up" style={{ animationDelay: "300ms" }}>
-          <Card className="p-6 shadow-glass-lg backdrop-blur-sm border-card-border bg-card/80">
-            <h2 className="text-lg font-semibold text-foreground mb-4">Security Alerts</h2>
-            <div className="space-y-3">
-              <AlertCard
-                title="Public Share Detected"
-                description="File exposed via link in Google Drive, auto-revoke pending."
-                severity="high"
-              />
-              <AlertCard
-                title="Unusual Login Location"
-                description="Login from new country for user Mike — verification required."
-                severity="medium"
-              />
-              <AlertCard
-                title="Data Exfiltration Suspected"
-                description="Large download from Snowflake warehouse NT_PROD."
-                severity="critical"
-              />
-              <AlertCard
-                title="OAuth App Risk"
-                description="Third-party app requested high access on GitHub repo."
-                severity="medium"
-              />
-            </div>
-          </Card>
+        {/* Security Alerts Section */}
+        <section className="space-y-6 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <h2 className="text-2xl font-bold text-foreground px-2">Security Alerts</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <ModernAlertCard
+              title="Public Share Detected"
+              description="File exposed via link in Google Drive. Auto-revoke pending to prevent unauthorized access."
+              severity="high"
+            />
+            <ModernAlertCard
+              title="Unusual Login Location"
+              description="Login from new country for user Mike. Verification required before access is granted."
+              severity="medium"
+            />
+            <ModernAlertCard
+              title="Data Exfiltration Suspected"
+              description="Large download detected from Snowflake warehouse NT_PROD. Investigating potential security breach."
+              severity="critical"
+            />
+            <ModernAlertCard
+              title="OAuth App Risk"
+              description="Third-party application requested elevated access permissions on GitHub repository."
+              severity="medium"
+            />
+          </div>
         </section>
       </div>
     </div>
