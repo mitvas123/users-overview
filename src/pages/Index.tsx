@@ -3,7 +3,7 @@ import { ModernStatCard } from "@/components/ModernStatCard";
 import { ModernPolicyCard } from "@/components/ModernPolicyCard";
 import { ModernAssetCard } from "@/components/ModernAssetCard";
 import { ModernAlertCard } from "@/components/ModernAlertCard";
-import { ModernRiskChart } from "@/components/ModernRiskChart";
+import { InteractiveRiskChart } from "@/components/InteractiveRiskChart";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const Index = () => {
@@ -92,7 +92,7 @@ const Index = () => {
 
           {/* Center - Chart */}
           <main className="xl:col-span-6 animate-fade-in-scale" style={{ animationDelay: "0.2s" }}>
-            <ModernRiskChart />
+            <InteractiveRiskChart />
           </main>
 
           {/* Right Sidebar - Assets */}
