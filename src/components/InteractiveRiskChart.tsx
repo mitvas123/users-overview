@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Zap, MessageCircle } from "lucide-react";
 import hummingbirdIcon from "@/assets/hummingbird-ai.png";
+import { ChatAssistant } from "./ChatAssistant";
 
 type MetricType = "risk" | "assets" | "users" | null;
 
 export const InteractiveRiskChart = () => {
   const [selectedMetric, setSelectedMetric] = useState<MetricType>(null);
   const [isAiHovered, setIsAiHovered] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   const metrics = [
     { 
@@ -277,6 +279,7 @@ export const InteractiveRiskChart = () => {
             className="absolute bottom-4 right-4 cursor-pointer group"
             onMouseEnter={() => setIsAiHovered(true)}
             onMouseLeave={() => setIsAiHovered(false)}
+            onClick={() => setIsChatOpen(true)}
           >
             <div className="relative">
               {/* Pulsing background glow */}
@@ -351,6 +354,9 @@ export const InteractiveRiskChart = () => {
           ))}
         </div>
       </div>
+
+      {/* Chat Assistant Modal */}
+      <ChatAssistant isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
     </div>
   );
 };
